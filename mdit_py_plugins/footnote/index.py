@@ -438,8 +438,8 @@ def render_footnote_ref(
     options: OptionsDict,
     env: EnvType,
 ) -> str:
-    ident: str = self.rules["footnote_anchor_name"](tokens, idx, options, env)  # type: ignore[attr-defined]
-    caption: str = self.rules["footnote_caption"](tokens, idx, options, env)  # type: ignore[attr-defined]
+    ident: str = self.rules["footnote_anchor_name"](self, tokens, idx, options, env)  # type: ignore[attr-defined]
+    caption: str = self.rules["footnote_caption"](self, tokens, idx, options, env)  # type: ignore[attr-defined]
     refid = ident
 
     if tokens[idx].meta.get("subId", -1) > 0:
@@ -466,7 +466,7 @@ def render_footnote_block_open(
     return (
         (
             '<hr class="footnotes-sep" />\n'
-            if options.xhtmlOut
+            if options["xhtmlOut"]
             else '<hr class="footnotes-sep">\n'
         )
         + '<section class="footnotes">\n'
@@ -491,7 +491,7 @@ def render_footnote_open(
     options: OptionsDict,
     env: EnvType,
 ) -> str:
-    ident: str = self.rules["footnote_anchor_name"](tokens, idx, options, env)  # type: ignore[attr-defined]
+    ident: str = self.rules["footnote_anchor_name"](self, tokens, idx, options, env)  # type: ignore[attr-defined]
 
     if tokens[idx].meta.get("subId", -1) > 0:
         ident += ":" + tokens[idx].meta["subId"]
@@ -516,7 +516,7 @@ def render_footnote_anchor(
     options: OptionsDict,
     env: EnvType,
 ) -> str:
-    ident: str = self.rules["footnote_anchor_name"](tokens, idx, options, env)  # type: ignore[attr-defined]
+    ident: str = self.rules["footnote_anchor_name"](self, tokens, idx, options, env)  # type: ignore[attr-defined]
 
     if tokens[idx].meta["subId"] > 0:
         ident += ":" + str(tokens[idx].meta["subId"])

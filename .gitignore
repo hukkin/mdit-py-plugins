@@ -141,3 +141,6 @@ __pycache__/
 .DS_Store
 
 docs/api/
+
+# IntelliJ
+.idea/

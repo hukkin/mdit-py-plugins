@@ -100,7 +100,7 @@ def test_dollarmath_fixtures(line, title, input, expected):
     )
     if "DISABLE-CODEBLOCKS" in title:
         md.disable("code")
-    md.options.xhtmlOut = False
+    md.options["xhtmlOut"] = False
     text = md.render(input)
     print(text)
     assert text.rstrip() == expected.rstrip()
