@@ -4,6 +4,7 @@ from functools import partial
 from typing import Any, Sequence
 
 from markdown_it import MarkdownIt
+from markdown_it.helpers import parseLinkLabel
 from markdown_it.rules_block import StateBlock
 from markdown_it.rules_core import StateCore
 from markdown_it.rules_inline import StateInline
@@ -120,7 +121,7 @@ def _span_rule(state: StateInline, silent: bool) -> bool:
 
     maximum = state.posMax
     labelStart = state.pos + 1
-    labelEnd = state.md.helpers.parseLinkLabel(state, state.pos, False)
+    labelEnd = parseLinkLabel(state, state.pos, False)
 
     # parser failed to find ']', so it's not a valid span
     if labelEnd < 0:
